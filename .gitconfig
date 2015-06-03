@@ -1,0 +1,41 @@
+[pull]
+  rebase = true
+[push]
+  default = upstream
+[merge]
+  tool = vimdiff
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+[alias]
+  a  = add
+  aa = add .
+  ai = add -i
+  ci = commit
+  cia = commit --amend
+  cim = commit -m
+  co = checkout
+  com = checkout master
+  cp = cherry-pick
+  st = status
+  s  = status
+  su = submodule update
+  br = branch
+  b  = branch
+  d  = diff
+  ds = diff --staged
+  ln = log --name-status
+  l  = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit
+  ll = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit -5
+  lll = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit -10
+  la = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --all --graph
+  ra = rebase --abort
+  rc = rebase --continue
+  rsh = reset --soft HEAD^
+  rim = rebase -i master
+[user]
+  name = Steve Pikelny
+  email = pikelnys@nextcapital.com
+[core]
+	editor = /usr/bin/vim
