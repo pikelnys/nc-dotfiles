@@ -2,7 +2,6 @@ export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.node/bin:$PATH
 export ANT_HOME="/usr/local/ant"
 export PATH=$PATH:${ANT_HOME}
-
 alias build_universe="populate-universe -Duniverse.name=gpsa-complex"
 
 alias ui="cd ~/code/nextcapital-ui"
@@ -13,10 +12,13 @@ alias vibp="vi ~/.bash_profile"
 alias sourcebp="source ~/.bash_profile"
 alias code="cd ~/code"
 
+alias be="bundle exec"
 alias railsc="rails c local_production"
 alias mktdata="cd ~/code/rails && RAILS_ENV=local_production rake market_data:use_latest"
 alias startrails="passenger start -e local_production"
-
+alias gs="grunt serve"
+alias gu="grunt unit"
+alias hint="grunt jshint:test"
 export EDITOR=vim
 
 export PS1="\[\033[33m\]${bold}\w ${normal}\033[32m\]\$(wrap_git_branch)\[\033[00m\]\n\t > "
@@ -69,6 +71,20 @@ fi
 if [ -f ~/.git-completion.sh ]; then
   . ~/.git-completion.sh
 fi
+
+function setjdk() {
+  if [ $# -ne 0 ]; then
+       removeFromPath '/System/Library/Frameworks/JavaVM.framework/Home/bin'
+          if [ -n "${JAVA_HOME+x}" ]; then
+                removeFromPath $JAVA_HOME
+                   fi
+                      export JAVA_HOME=`/usr/libexec/java_home -v $@`
+                         export PATH=$JAVA_HOME/bin:$PATH
+                           fi
+                            }
+                             function removeFromPath() {
+                               export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")
+                                }
 
 # Load RVM into a shell session *as a function*
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
