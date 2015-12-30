@@ -1,0 +1,14 @@
+{
+	"binary_file_patterns":
+	[
+		"bower_components/*",
+		"cordova/*",
+		"deployer/*",
+		"dist/*",
+		"node_modules/*"
+	],
+	"font_size": 18.0,
+	"ignored_packages":
+	[
+	]
+}

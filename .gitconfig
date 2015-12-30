@@ -24,8 +24,10 @@
   d  = diff
   ds = diff --staged
   pop = stash pop
+  puo = push -u origin
   ra = rebase --abort
   rc = rebase --continue
+  rsa = reset .
   rsh = reset --soft HEAD^
   rim = rebase -i master
   s  = status
