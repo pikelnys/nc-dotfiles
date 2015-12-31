@@ -12,6 +12,7 @@ alias vibp="vi ~/.bash_profile"
 alias sourcebp="source ~/.bash_profile"
 alias code="cd ~/code"
 
+alias la="ls -a"
 alias be="bundle exec"
 alias railsc="rails c local_production"
 alias mktdata="cd ~/code/rails && RAILS_ENV=local_production rake market_data:use_latest"
