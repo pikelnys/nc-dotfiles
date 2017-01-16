@@ -11,6 +11,7 @@
 [alias]
   a = add
   aa = add .
+  ap = add -p
   ai = add -i
   b  = branch
   br  = branch
@@ -20,13 +21,16 @@
   cit = commit -m "TEMPORARY"
   co = checkout
   com = checkout master
+  cob = checkout -b
   cp = cherry-pick
   d  = diff
   ds = diff --staged
   pop = stash pop
-  puo = push -u origin
+  puo = ! git push -u origin $(git name)
   ra = rebase --abort
   rc = rebase --continue
+  roa = remote add origin
+  rs = reset
   rsa = reset .
   rsh = reset --soft HEAD^
   rim = rebase -i master
@@ -40,4 +44,4 @@
   la = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --all --graph
 [user]
 	name = Steve Pikelny
-	email = pikelnys@nextcapital.com
+	email = steve.pikelny@human.x.ai

@@ -1,28 +1,48 @@
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.node/bin:$PATH
-export ANT_HOME="/usr/local/ant"
-export PATH=$PATH:${ANT_HOME}
-alias build_universe="populate-universe -Duniverse.name=gpsa-complex"
 
-alias ui="cd ~/code/nextcapital-ui"
-alias bb="cd ~/code/nextcapital-ui/app/styles/building-blocks"
-alias api="cd ~/code/nextcapital-ui/app/scripts/nextcapital-api-client"
-alias subl=sublime
-alias vibp="vi ~/.bash_profile"
+alias gi="git"
+alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+alias cd..="cd .."
+alias cd...="cd ../.."
+alias vibp="vi ~/.bash_profile && source ~/.bash_profile"
 alias sourcebp="source ~/.bash_profile"
-alias code="cd ~/code"
-
+alias xai="cd ~/xdotai"
+alias userhome="cd ~/xdotai/user-home"
+alias console="cd ~/xdotai/console"
+alias tconsole="cd ~/xdotai/trainer-console"
+alias common="cd ~/xdotai/common-js"
+alias utils="cd ~/xdotai/utils"
+alias wfm="cd ~/xdotai/workflow-manager"
+alias dummydata="node ~/xdotai/utils/db/dummydata/"
+alias mongo_prod="MONGO_URI='' MONGO_SLAVE_OPTIONS=''"
+alias mongo_local="MONGO_URI=''"
+alias ns="npm start"
+alias nt="npm test"
+alias nrr="npm run remote"
 alias la="ls -a"
-alias be="bundle exec"
-alias railsc="rails c local_production"
-alias mktdata="cd ~/code/rails && RAILS_ENV=local_production rake market_data:use_latest"
-alias startrails="passenger start -e local_production"
-alias gs="grunt serve"
-alias gu="grunt unit"
-alias hint="grunt jshint:test"
+
 export EDITOR=vim
 
 export PS1="\[\033[33m\]${bold}\w ${normal}\033[32m\]\$(wrap_git_branch)\[\033[00m\]\n\t > "
+
+function psag() {
+  ps aux | grep $1
+}
+alias psagn="psag node"
+
+function awsin() {
+  ssh ubuntu@`aws ec2 describe-instances --filters "Name=tag:Name,Values=$1" --output text  | awk -F "\t" '$1=="PRIVATEIPADDRESSES" {print $4; exit}'`
+}
+
+function remote_mongo() {
+}
+
+function mongo_remote() {
+}
+
+function remote_api() {
+}
 
 #Terminal prompt
 parse_git_branch() {
@@ -47,21 +67,12 @@ grb () {
   git rebase master
 
   if [[ $? != 0 ]]; then
-    exit 1
+    exit
   fi
 
   if [[ $CHANGES != "No local changes to save" ]]; then
     git stash pop
   fi
-}
-
-dev_branch() {
- grunt deploy:dev --branch=$1 --dev=pikelnys
-}
-
-# mkdir and cd into new dir
-mcdir () {
-  mkdir -p -- "$1" && cd -P -- "$1"
 }
 
 
@@ -72,23 +83,5 @@ fi
 if [ -f ~/.git-completion.sh ]; then
   . ~/.git-completion.sh
 fi
-
-function setjdk() {
-  if [ $# -ne 0 ]; then
-       removeFromPath '/System/Library/Frameworks/JavaVM.framework/Home/bin'
-          if [ -n "${JAVA_HOME+x}" ]; then
-                removeFromPath $JAVA_HOME
-                   fi
-                      export JAVA_HOME=`/usr/libexec/java_home -v $@`
-                         export PATH=$JAVA_HOME/bin:$PATH
-                           fi
-                            }
-                             function removeFromPath() {
-                               export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")
-                                }
-
-# Load RVM into a shell session *as a function*
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 ulimit -n 10240
