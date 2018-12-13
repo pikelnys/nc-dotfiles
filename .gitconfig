@@ -20,11 +20,13 @@
   cim = commit -m
   cit = commit -m "TEMPORARY"
   co = checkout
-  com = checkout master
+  com = checkout develop
   cob = checkout -b
   cp = cherry-pick
   d  = diff
   ds = diff --staged
+  ps = push
+  pl = pull
   pop = stash pop
   puo = ! git push -u origin $(git name)
   ra = rebase --abort
@@ -44,4 +46,6 @@
   la = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --all --graph
 [user]
 	name = Steve Pikelny
-	email = steve.pikelny@human.x.ai
+	email = steve.pikelny@symbiont.io
+[url "git@github.com:"]
+	insteadOf = https://github.com/
