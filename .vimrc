@@ -8,6 +8,15 @@ au!
 
 " }}}
 
+" Run pathogen
+execute pathogen#infect()
+filetype plugin indent on
+
+" Make sure color is being used
+if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
+	set t_Co=256
+endif
+
 syntax on
 
 "Map jj and jk to escape in insert mode
@@ -55,6 +64,8 @@ set whichwrap=b,s,h,l,<,>,[,]
 nnoremap <C-e> 3<C-e> 
 nnoremap <C-y> 3<C-y> 
 
+vmap <C-x> :!pbcopy<CR>
+vmap <C-c> :w !pbcopy<CR><CR>
 "Improve split behavior
 set splitbelow
 set splitright
@@ -65,57 +76,50 @@ nnoremap <leader>n :set relativenumber!<CR>
 
 " The colorscheme
 " colorscheme coffee
-" colorscheme molokai
+"colorscheme molokai
+colorscheme solarized8
+let g:airline_solarized_bg='dark'
 "Reset colorscheme after a configuration reload to prevent weirdness
 
-func! MatteScreen()
-  silent! colorscheme solarized
-  set background=dark
-  let g:matteScreen=1
-endfunc
+"func! MatteScreen()
+  "silent! colorscheme solarized
+  "set background=dark
+  "let g:matteScreen=1
+"endfunc
 
-func! GlossyScreen()
-  set background=light
-  try
-    silent! colorscheme macvim
-    highlight Normal guibg=#dfdfdf
-    highlight StatusLineNC guibg=DarkSlateGray guifg=Gray70
-  catch
-  endtry
-  let g:matteScreen=0
-endfunc
+"func! GlossyScreen()
+  "set background=light
+  "try
+    "silent! colorscheme macvim
+    "highlight Normal guibg=#dfdfdf
+    "highlight StatusLineNC guibg=DarkSlateGray guifg=Gray70
+  "catch
+  "endtry
+  "let g:matteScreen=0
+"endfunc
 
-func! SwitchScreenType()
-  if g:matteScreen
-    call GlossyScreen()
-  else
-    call MatteScreen()
-  end
-endfunc
+"func! SwitchScreenType()
+  "if g:matteScreen
+    "call GlossyScreen()
+  "else
+    "call MatteScreen()
+  "end
+"endfunc
 
-if exists("g:mattescreen")
+"if exists("g:mattescreen")
 
-  if g:matteScreen
-    call MatteScreen()
-  else
-    call GlossyScreen()
-  endif
-else
-  "Set initial colorscheme based on configured screen type
-  call MatteScreen()
-  " call GlossyScreen()
-endif
+  "if g:matteScreen
+    "call MatteScreen()
+  "else
+    "call GlossyScreen()
+  "endif
+"else
+  ""Set initial colorscheme based on configured screen type
+  "call MatteScreen()
+  "" call GlossyScreen()
+"endif
 
 " Plugins and Settings {{{
-
-" Run pathogen
-execute pathogen#infect()
-filetype plugin indent on
-
-" Make sure color is being used
-if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
-	set t_Co=256
-endif
 
 " Status Bar {{{
 
@@ -135,7 +139,7 @@ let g:airline_symbols.space = "\ua0"
 
 " python-mode
 let ropevim_enable_shortcuts = 1
-"let g:pymode = 0
+let g:pymode = 0
 let g:pymode_python = 'python3'
 let g:pymode_rope_goto_def_newwin = "vnew"
 let g:pymode_rope_extended_complete = 1
@@ -261,10 +265,11 @@ nnoremap <leader>b :Gblame<CR>
 nnoremap <leader>f :Ag<CR>
 
 " File Browser
-nnoremap <leader>e :Ex<CR>
+nnoremap <leader>e :o .<CR>
 nnoremap <leader>s :Sex<CR>
 nnoremap <leader>t :Tex<CR>
 nnoremap <leader>v :Vex<CR>
+nnoremap <leader>E :Ex<CR>
 
 " Tab/Space normalization
 "nnoremap <leader>t :set expandtab tabstop=4 shiftwidth=4 softtabstop=4<CR>

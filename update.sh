@@ -89,6 +89,7 @@ other=(
   'wombat/colors;http://files.werx.dk/wombat.vim'
   'coffee/colors;https://raw.githubusercontent.com/duythinht/vim-coffee/master/colors/coffee.vim'
   'molokai/colors;https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim'
+  'solarized/colors;https://raw.githubusercontent.com/lifepillar/vim-solarized8/master/colors/solarized8.vim'
 
   )
 

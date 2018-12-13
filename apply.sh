@@ -23,6 +23,7 @@ fi
 
 if argument brew; then
   brew install fzf
+  brew install httpie
   brew install the_silver_searcher
   brew install jq
   brew install tree
