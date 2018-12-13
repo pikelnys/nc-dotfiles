@@ -14,6 +14,10 @@ syntax on
 imap jj <ESC>
 imap jk <ESC>
 
+
+" Leader key
+let mapleader = "\<Space>"
+
 set hidden
 set mouse=a
 set encoding=utf-8
@@ -236,9 +240,6 @@ endif
 " }}}
 
 " Key Mappings {{{
-
-" Leader key
-let mapleader = "\<Space>"
 
 " Line numbers
 nnoremap <leader>l :setlocal number!<CR>
