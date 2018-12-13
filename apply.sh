@@ -5,10 +5,10 @@ DIR=`dirname $0`
 
 if argument vim; then
   (cd $DIR ; git submodule update --init)
-  replace ~/.vim
-  replace ~/.vimrc
+  cp ./.vimrc ~/.vim/.vimrc
   cp ./updat.sh ~/.vim/update.sh
   chmod +x ~/.vim/update.sh
+  ~/.vim/update.sh
 fi
 
 if argument tmux; then
