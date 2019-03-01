@@ -43,7 +43,7 @@ set number
 set cursorline
 set showmode
 "Show buffer number and cursor position in ruler
-set ruler 
+set ruler
 set rulerformat=%=\:b%n\ %l,%c%V\ %P
 "Show entered partial commands in ruler
 
@@ -59,10 +59,10 @@ set incsearch
 
 "Improve scrolling and cursor movement
 set scrolloff=3
-set backspace=indent,eol,start 
+set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]
-nnoremap <C-e> 3<C-e> 
-nnoremap <C-y> 3<C-y> 
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 
 vmap <C-x> :!pbcopy<CR>
 vmap <C-c> :w !pbcopy<CR><CR>
@@ -213,6 +213,7 @@ let g:ctrlp_switch_buffer = 0
 " Autocommands {{{
 
 " Auto source this file when saved
+autocmd BufWritePre * %s/\s\+$//e
 au bufwritepost .vimrc source %
 
 " Other
@@ -245,11 +246,31 @@ endif
 
 " Key Mappings {{{
 
-" Line numbers
-nnoremap <leader>l :setlocal number!<CR>
+" Navigation
+"autocmd VimEnter * iunmap <Space>hp
+"autocmd VimEnter * iunmap <Space>hu
+"autocmd VimEnter * iunmap <Space>hs
 
-" Paste mode (maintains formatting)
-nnoremap <leader>p :set paste!<CR>
+nnoremap <leader>j <C-W><C-J>
+nnoremap <leader>k <C-W><C-K>
+nnoremap <leader>l <C-W><C-L>
+nnoremap <leader>hh <C-W><C-H>
+nnoremap <leader><Left> gT
+nnoremap <leader>[ gT
+nnoremap <leader>] gt
+nnoremap gk gg
+nnoremap gj G
+
+nnoremap <CR> o<esc>
+nnoremap <leader>a ea
+nnoremap <leader>8 *N
+nnoremap <leader>d yyp
+nnoremap <leader>/ :call NERDComment(0,"toggle")<CR>
+" Line numbers
+"nnoremap <leader>l :setlocal number!<CR>
+
+nnoremap <leader>p viwp
+nnoremap <leader>c yiw
 
 " Clear search highlighting
 nnoremap \\ :nohlsearch<CR>
@@ -282,11 +303,12 @@ nnoremap ; :CtrlPBuffer<CR>
 nnoremap <C-N> :cnext<CR>
 nnoremap <C-P> :cprev<CR>
 
+nnoremap <A-j> dd
 noremap <silent> <C-j> :call <SID>swap_down()<CR>
 noremap <silent> <C-k> :call <SID>swap_up()<CR>
 
 " Python support
-nnoremap <Leader>d Oimport pdb; from pprint import pprint; pdb.set_trace() # BREAKPOINT<C-c>
+nnoremap <Leader>D Oimport pdb; from pprint import pprint; pdb.set_trace() # BREAKPOINT<C-c>
 
 " Insert the current date
 nnoremap <F5> "=strftime("%m-%d-%Y")<CR>p
